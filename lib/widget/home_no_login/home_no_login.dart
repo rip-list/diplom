@@ -26,15 +26,32 @@ class HomeNoLogin extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
           child: Row(
             children: [
-              CusBox(height: 0.9, width: 0.4),
-              Column(
-                children: [
-                  SizedBox(width: 20),
-                  CusBox(height: 0.439, width: 0.56),
-                  CusBox(height: 0.439, width: 0.56),
-                ],
+              Expanded(
+                child: CusBox(
+                  height: 0.9,
+                  width: 0.4,
+                ),
               ),
-
+              SizedBox(width: 20.0),
+              Expanded(
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: CusBox(
+                        height: 0.4,
+                        width: 0.55,
+                      ),
+                    ),
+                    SizedBox(height: 20.0),
+                    Expanded(
+                      child: CusBox(
+                        height: 0.4,
+                        width: 0.55,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               // CusBox(height: 0.44, width: 0.57),
             ],
           ),
