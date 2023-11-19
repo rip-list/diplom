@@ -52,7 +52,6 @@ class HomeNoLogin extends StatelessWidget {
                   ],
                 ),
               ),
-              // CusBox(height: 0.44, width: 0.57),
             ],
           ),
         ),
