@@ -30,6 +30,7 @@ class HomeNoLogin extends StatelessWidget {
                 child: CusBox(
                   height: 0.9,
                   width: 0.4,
+                  textButton: 'Сделай меня',
                 ),
               ),
               SizedBox(width: 20.0),
@@ -40,6 +41,7 @@ class HomeNoLogin extends StatelessWidget {
                       child: CusBox(
                         height: 0.4,
                         width: 0.55,
+                        textButton: 'Назначенные задания',
                       ),
                     ),
                     SizedBox(height: 20.0),
@@ -47,6 +49,7 @@ class HomeNoLogin extends StatelessWidget {
                       child: CusBox(
                         height: 0.4,
                         width: 0.55,
+                        textButton: 'Поданные документы',
                       ),
                     ),
                   ],
