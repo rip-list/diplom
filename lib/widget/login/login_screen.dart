@@ -19,14 +19,16 @@ class LoginScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text(
             'Back',
-            style: TextStyle(color: AppColors.blue, fontFamily: jojo),
+            style: TextStyle(color: AppColors.blue, fontFamily: 'Jojo'),
           ),
           leading: IconButton(
+            //кнопка возвращения назад
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
+          backgroundColor: AppColors.secondary,
         ),
         body: const Center(
           child: LoginManager(),

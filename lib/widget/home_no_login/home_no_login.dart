@@ -15,7 +15,11 @@ class HomeNoLogin extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           "FlyWritE",
-          style: TextStyle(color: AppColors.blue),
+          style: TextStyle(
+            color: AppColors.blue,
+            fontFamily: 'Jojo',
+            fontSize: 30,
+          ),
         ),
         backgroundColor: AppColors.primary,
         actions: [

@@ -30,7 +30,7 @@ flutter:
 
  
   fonts:
-    - family: jojo
+    - family: Jojo
       fonts:
         - asset: assets/fonts/jejuhallasan.ttf
   #       - asset: fonts/Schyler-Italic.ttf
