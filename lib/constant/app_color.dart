@@ -9,4 +9,5 @@ class AppColors {
   static const Color secondary = Color(0xFF373636);
   static const Color green = Color(0xFF43D049);
   static const Color transparent = Colors.transparent;
+  static const Color blackback = Color(0xFF373636);
 }

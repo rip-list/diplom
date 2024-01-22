@@ -1,43 +1,51 @@
 import 'package:diplom/constant/app_color.dart';
 import 'package:flutter/material.dart';
 
-class CusBox extends StatelessWidget {
+class CusBox extends StatefulWidget {
   final double height;
   final double width;
   final String textButton;
-  const CusBox(
-      {super.key,
-      required this.height,
-      required this.width,
-      required this.textButton});
+  final Color color;
 
+  const CusBox({
+    Key? key,
+    required this.height,
+    required this.width,
+    required this.textButton,
+    this.color = AppColors.grey,
+  }) : super(key: key);
+
+  @override
+  CusBoxState createState() => CusBoxState();
+}
+
+class CusBoxState extends State<CusBox> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // Добавленный SizedBox
-      height: MediaQuery.of(context).size.height * height,
-      width: MediaQuery.of(context).size.width * width,
+      height: MediaQuery.of(context).size.height * widget.height,
+      width: MediaQuery.of(context).size.width * widget.width,
       child: LayoutBuilder(
         builder: (context, constraints) {
           return Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(11),
-              color: AppColors.grey,
+              color: widget.color,
               boxShadow: [
                 BoxShadow(
-                    color: AppColors.primary.withOpacity(0.5),
-                    offset: const Offset(3, 5))
+                  color: AppColors.primary.withOpacity(0.5),
+                  offset: const Offset(3, 5),
+                ),
               ],
             ),
             child: Stack(
               children: [
                 TextButton(
-                  // ignore: avoid_print
                   onPressed: null,
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: Text(
-                      textButton,
+                      widget.textButton,
                       style: const TextStyle(
                         color: AppColors.white,
                       ),
@@ -46,8 +54,8 @@ class CusBox extends StatelessWidget {
                 ),
                 const Positioned(
                   top: 20.0,
-                  left: 0, // Можно также указать отступ слева
-                  right: 0, // Или отступ справа
+                  left: 0,
+                  right: 0,
                   child: Divider(
                     color: AppColors.blue,
                     thickness: 1.0,

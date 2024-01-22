@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers, unnecessary_import, prefer_const_literals_to_create_immutables
 
 import 'package:diplom/custom/custom_box.dart';
+import 'package:diplom/widget/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import "package:diplom/constant/app_color.dart";
 import 'package:flutter/rendering.dart';
@@ -17,6 +18,21 @@ class HomeNoLogin extends StatelessWidget {
           style: TextStyle(color: AppColors.blue),
         ),
         backgroundColor: AppColors.primary,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.manage_accounts_rounded),
+            onPressed: () {
+              // Добавьте ваш обработчик события здесь
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
+              );
+            },
+          ),
+          const SizedBox(
+            width: 20.0,
+          )
+        ],
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
