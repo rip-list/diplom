@@ -15,20 +15,21 @@ class LoginScreen extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       color: AppColors.blue,
       home: Scaffold(
-        backgroundColor: AppColors.primary,
+        backgroundColor: AppColors.secondary,
         appBar: AppBar(
+          backgroundColor: AppColors.primary,
           title: const Text(
             'Back',
             style: TextStyle(color: AppColors.blue, fontFamily: 'Jojo'),
           ),
           leading: IconButton(
             //кнопка возвращения назад
+            color: AppColors.white,
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
-          backgroundColor: AppColors.secondary,
         ),
         body: const Center(
           child: LoginManager(),
