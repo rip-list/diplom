@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
           ),
           leading: IconButton(
             //кнопка возвращения назад
-            color: AppColors.white,
+            color: AppColors.blue,
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.of(context).pop();

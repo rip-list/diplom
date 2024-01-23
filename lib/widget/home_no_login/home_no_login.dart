@@ -23,15 +23,28 @@ class HomeNoLogin extends StatelessWidget {
         ),
         backgroundColor: AppColors.primary,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.manage_accounts_rounded),
-            onPressed: () {
-              // Добавьте ваш обработчик события здесь
+          InkWell(
+            borderRadius: BorderRadius.circular(23),
+            onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const LoginScreen()),
               );
             },
+            child: const Row(
+              children: [
+                IconButton(
+                    icon: Icon(Icons.manage_accounts_rounded),
+                    tooltip: "login",
+                    focusColor: AppColors.grey,
+                    onPressed: null),
+                SizedBox(width: 8),
+                Text(
+                  "no login",
+                  style: TextStyle(color: AppColors.grey),
+                ),
+              ],
+            ),
           ),
           const SizedBox(
             width: 20.0,
