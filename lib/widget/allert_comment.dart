@@ -1,6 +1,5 @@
-//тут говнокод, надо переделать в отдельный блок с параметрами нахер
-
 import 'package:diplom/constant/app_color.dart';
+import 'package:diplom/lib/database/bd.dart';
 import 'package:flutter/material.dart';
 
 class CommentMsg extends StatefulWidget {
@@ -16,90 +15,106 @@ class CommentMsgState extends State<CommentMsg> {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: avoid_unnecessary_containers
     return Container(
       height: 230,
       alignment: Alignment.center,
       width: 600,
       child: Column(
         children: [
-          TextField(
+          InputField(
             controller: teLogin,
-            style: const TextStyle(
-              color: AppColors.white,
-            ),
-            decoration: const InputDecoration(
-              hintText: 'Input Login',
-              filled: true,
-              fillColor: AppColors.primary,
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(30),
-                ),
-                borderSide: BorderSide(color: AppColors.blue),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(30),
-                ),
-                borderSide: BorderSide(color: AppColors.blue),
-              ),
-              hintStyle: TextStyle(color: AppColors.white),
-              // Свойство style изменяет цвет введенного текста.
-            ),
+            hintText: 'Input Login',
           ),
           const SizedBox(
             width: 40,
             height: 30,
           ),
-          TextField(
+          InputField(
             controller: tePassword,
-            style: const TextStyle(color: AppColors.white),
-            decoration: const InputDecoration(
-              hintText: 'Input Password',
-              filled: true,
-              fillColor: AppColors.primary,
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(30),
-                ),
-                borderSide: BorderSide(color: AppColors.blue),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(30),
-                ),
-                borderSide: BorderSide(color: AppColors.blue),
-              ),
-              hintStyle: TextStyle(color: AppColors.white),
-              // Свойство style изменяет цвет введенного текста.
-            ),
+            hintText: 'Input Password',
+            isPassword: true,
           ),
           const SizedBox(
             height: 10,
           ),
-          Container(
-            width: 300,
-            height: 50,
-            decoration: const BoxDecoration(
-              color: AppColors.primary,
-              borderRadius: BorderRadius.all(
-                Radius.circular(30),
-              ),
-            ),
-            child: ElevatedButton(
-              style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(AppColors.primary)),
-              onPressed: () async {
-                // вставка значения в бд
-              },
-              child: const Text(
-                'Send',
-                style: TextStyle(color: AppColors.white, fontSize: 14),
-              ),
-            ),
-          )
+          SendButton(
+            onPressed: () async {
+              await insertAuto(teLogin.text, tePassword.text);
+            },
+          ),
         ],
+      ),
+    );
+  }
+}
+
+class InputField extends StatelessWidget {
+  final TextEditingController controller;
+  final String hintText;
+  final bool isPassword;
+
+  const InputField({
+    super.key,
+    required this.controller,
+    required this.hintText,
+    this.isPassword = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: controller,
+      style: const TextStyle(
+        color: AppColors.white,
+      ),
+      obscureText: isPassword,
+      decoration: InputDecoration(
+        hintText: hintText,
+        filled: true,
+        fillColor: AppColors.primary,
+        enabledBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(30),
+          ),
+          borderSide: BorderSide(color: AppColors.blue),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(30),
+          ),
+          borderSide: BorderSide(color: AppColors.blue),
+        ),
+        hintStyle: const TextStyle(color: AppColors.white),
+      ),
+    );
+  }
+}
+
+class SendButton extends StatelessWidget {
+  final VoidCallback onPressed;
+
+  const SendButton({super.key, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 300,
+      height: 50,
+      decoration: const BoxDecoration(
+        color: AppColors.primary,
+        borderRadius: BorderRadius.all(
+          Radius.circular(30),
+        ),
+      ),
+      child: ElevatedButton(
+        style: const ButtonStyle(
+          backgroundColor: MaterialStatePropertyAll(AppColors.primary),
+        ),
+        onPressed: onPressed,
+        child: const Text(
+          'Send',
+          style: TextStyle(color: AppColors.white, fontSize: 14),
+        ),
       ),
     );
   }
