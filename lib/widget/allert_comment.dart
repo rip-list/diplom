@@ -1,6 +1,11 @@
+// ignore_for_file: avoid_print
+
 import 'package:diplom/constant/app_color.dart';
+import 'package:diplom/custom/custom_dialog.dart';
 import 'package:diplom/lib/database/bd.dart';
 import 'package:flutter/material.dart';
+
+import '../custom/custom_fild.dart';
 
 class CommentMsg extends StatefulWidget {
   const CommentMsg({super.key});
@@ -39,52 +44,21 @@ class CommentMsgState extends State<CommentMsg> {
           ),
           SendButton(
             onPressed: () async {
-              await insertAuto(teLogin.text, tePassword.text);
+              if (teLogin.text.isEmpty || tePassword.text.isEmpty) {
+                // Один или оба поля пусты
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const CustomDialog();
+                  },
+                );
+              } else {
+                // Оба поля заполнены, выполните вашу логику.
+                await insertAuto(teLogin.text, tePassword.text);
+              }
             },
           ),
         ],
-      ),
-    );
-  }
-}
-
-class InputField extends StatelessWidget {
-  final TextEditingController controller;
-  final String hintText;
-  final bool isPassword;
-
-  const InputField({
-    super.key,
-    required this.controller,
-    required this.hintText,
-    this.isPassword = false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      style: const TextStyle(
-        color: AppColors.white,
-      ),
-      obscureText: isPassword,
-      decoration: InputDecoration(
-        hintText: hintText,
-        filled: true,
-        fillColor: AppColors.primary,
-        enabledBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(30),
-          ),
-          borderSide: BorderSide(color: AppColors.blue),
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(30),
-          ),
-          borderSide: BorderSide(color: AppColors.blue),
-        ),
-        hintStyle: const TextStyle(color: AppColors.white),
       ),
     );
   }
