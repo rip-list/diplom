@@ -53,8 +53,8 @@ class CommentMsgState extends State<CommentMsg> {
                   },
                 );
               } else {
-                // Оба поля заполнены, выполните вашу логику.
-                await insertAuto(teLogin.text, tePassword.text);
+                // Оба поля заполнены, выполните вашу логику
+                checkUser(teLogin.text, tePassword.text);
               }
             },
           ),
