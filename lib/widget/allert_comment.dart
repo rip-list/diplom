@@ -3,6 +3,7 @@
 import 'package:diplom/constant/app_color.dart';
 import 'package:diplom/custom/custom_dialog.dart';
 import 'package:diplom/lib/database/bd.dart';
+
 import 'package:flutter/material.dart';
 
 import '../custom/custom_fild.dart';
@@ -42,23 +43,24 @@ class CommentMsgState extends State<CommentMsg> {
           const SizedBox(
             height: 10,
           ),
-          SendButton(
-            onPressed: () async {
-              if (teLogin.text.isEmpty || tePassword.text.isEmpty) {
-                // Один или оба поля пусты
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return const CustomDialog();
-                  },
-                );
-              } else {
-                // Оба поля заполнены, выполните вашу логику
-
-                if (await checkUser(teLogin.text, tePassword.text)) {}
+          SendButton(onPressed: () async {
+            if (teLogin.text.isEmpty || tePassword.text.isEmpty) {
+              // Один или оба поля пусты
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return const CustomDialog();
+                },
+              );
+            } else {
+              // Оба поля заполнены, выполните вашу логику
+              if (!mounted) {
+                // Проверка, присоединен ли виджет
+                return;
               }
-            },
-          ),
+              await checkUser(context, teLogin.text, tePassword.text);
+            }
+          })
         ],
       ),
     );

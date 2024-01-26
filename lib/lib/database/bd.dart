@@ -2,6 +2,8 @@
 
 import 'dart:async';
 import 'dart:convert';
+import 'package:diplom/widget/autorization/home_login.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 // отправка данных
@@ -40,7 +42,7 @@ Future<Map<String, dynamic>?> fetchData() async {
   }
 }
 
-Future<bool> checkUser(String username, String password) async {
+Future<void> checkUser(BuildContext context, username, String password) async {
   try {
     final response = await http.post(
       Uri.parse('http://localhost:3000/diplom/checkUser'),
@@ -54,17 +56,18 @@ Future<bool> checkUser(String username, String password) async {
       Map<String, dynamic> responseBody = json.decode(response.body);
       if (responseBody['success'] == true) {
         print('Credentials are valid');
-        return true;
+        Navigator.pushReplacement(
+          // ignore: use_build_context_synchronously
+          context,
+          MaterialPageRoute(builder: (context) => const HomeLogin()),
+        );
       } else {
-        print('Invalid credentials. Response ${response.body}');
-        return false;
+        return print('Invalid credentials. Response ${response.body}');
       }
     } else {
-      print('Server error. Status code: ${response.statusCode}');
-      return false;
+      return print('Server error. Status code: ${response.statusCode}');
     }
   } catch (error) {
-    print('Error checking user: $error');
-    return false;
+    return print('Error checking user: $error');
   }
 }

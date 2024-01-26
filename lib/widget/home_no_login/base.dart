@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home_no_login.dart';
-import 'package:diplom/lib/sizer_util.dart';
+import 'package:diplom/lib/sized_screen/sizer_util.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

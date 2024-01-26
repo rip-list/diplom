@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_init_to_null
+
 import 'package:diplom/constant/app_color.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +8,7 @@ class CusBox extends StatefulWidget {
   final double width;
   final String textButton;
   final Color color;
+  final VoidCallback? onPressed;
 
   const CusBox({
     Key? key,
@@ -13,6 +16,7 @@ class CusBox extends StatefulWidget {
     required this.width,
     required this.textButton,
     this.color = AppColors.grey,
+    this.onPressed = null,
   }) : super(key: key);
 
   @override
@@ -41,7 +45,7 @@ class CusBoxState extends State<CusBox> {
             child: Stack(
               children: [
                 TextButton(
-                  onPressed: null,
+                  onPressed: widget.onPressed,
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: Text(
@@ -61,7 +65,6 @@ class CusBoxState extends State<CusBox> {
                     thickness: 1.0,
                   ),
                 ),
-                // Другие виджеты...
               ],
             ),
           );
