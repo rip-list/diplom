@@ -54,7 +54,8 @@ class CommentMsgState extends State<CommentMsg> {
                 );
               } else {
                 // Оба поля заполнены, выполните вашу логику
-                checkUser(teLogin.text, tePassword.text);
+
+                if (await checkUser(teLogin.text, tePassword.text)) {}
               }
             },
           ),

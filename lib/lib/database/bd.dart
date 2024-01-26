@@ -51,11 +51,14 @@ Future<bool> checkUser(String username, String password) async {
     );
 
     if (response.statusCode == 200) {
-      print('Credentials are valid');
-      return true;
-    } else if (response.statusCode == 401) {
-      print('Invalid credentials');
-      return false;
+      Map<String, dynamic> responseBody = json.decode(response.body);
+      if (responseBody['success'] == true) {
+        print('Credentials are valid');
+        return true;
+      } else {
+        print('Invalid credentials. Response ${response.body}');
+        return false;
+      }
     } else {
       print('Server error. Status code: ${response.statusCode}');
       return false;
