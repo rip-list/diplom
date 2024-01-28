@@ -9,12 +9,15 @@ class CusBox extends StatefulWidget {
   final String textButton;
   final Color color;
   final VoidCallback? onPressed;
-
+  final Widget body;
+  
+  
   const CusBox({
     Key? key,
     required this.height,
     required this.width,
     required this.textButton,
+    required this.body,
     this.color = AppColors.grey,
     this.onPressed = null,
   }) : super(key: key);

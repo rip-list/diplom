@@ -54,11 +54,11 @@ class CommentMsgState extends State<CommentMsg> {
               );
             } else {
               // Оба поля заполнены, выполните вашу логику
-              if (!mounted) {
-                // Проверка, присоединен ли виджет
-                return;
+              print(teLogin.text);
+              print(tePassword.text);
+              if (mounted) {
+                await checkUser(context, teLogin.text, tePassword.text);
               }
-              await checkUser(context, teLogin.text, tePassword.text);
             }
           })
         ],

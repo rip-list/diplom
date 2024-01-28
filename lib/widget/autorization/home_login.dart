@@ -1,5 +1,5 @@
 // ignore_for_file: avoid_unnecessary_containers, unnecessary_import, prefer_const_literals_to_create_immutables
-
+import 'package:diplom/custom/import_lib.dart';
 import 'package:diplom/custom/custom_box.dart';
 import 'package:diplom/widget/autorization/profil.dart';
 import 'package:flutter/material.dart';
@@ -67,6 +67,7 @@ class HomeLogin extends StatelessWidget {
                   height: 0.9,
                   width: 0.4,
                   textButton: 'Сделай меня',
+                  body: BlockMake(),
                 ),
               ),
               SizedBox(width: 20.0),
@@ -78,15 +79,16 @@ class HomeLogin extends StatelessWidget {
                         height: 0.4,
                         width: 0.55,
                         textButton: 'Назначенные задания',
+                        body: BlockTasks(),
                       ),
                     ),
                     SizedBox(height: 20.0),
                     Expanded(
                       child: CusBox(
-                        height: 0.4,
-                        width: 0.55,
-                        textButton: 'Поданные документы',
-                      ),
+                          height: 0.4,
+                          width: 0.55,
+                          textButton: 'Поданные документы',
+                          body: BlockDocs()),
                     ),
                   ],
                 ),

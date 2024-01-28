@@ -1,14 +1,21 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print,
 
 import 'dart:async';
 import 'dart:convert';
 import 'package:diplom/widget/autorization/home_login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+
+import '../../constant/user_provider.dart';
 
 // отправка данных
+// final get userid;
 final url = Uri.parse('http://localhost:3000/diplom/data_user');
-final headers = {'Content-Type': 'application/json'};
+final headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+};
 
 Future<void> insertAuto(String username, String password) async {
   final bodyInsert = jsonEncode({'username': username, 'password': password});
@@ -42,32 +49,36 @@ Future<Map<String, dynamic>?> fetchData() async {
   }
 }
 
-Future<void> checkUser(BuildContext context, username, String password) async {
+Future<void> checkUser(
+    BuildContext context, String username, String password) async {
   try {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
     final response = await http.post(
       Uri.parse('http://localhost:3000/diplom/checkUser'),
-      body: {
+      headers: headers,
+      body: jsonEncode({
         'username': username,
         'password': password,
-      },
+      }),
     );
 
     if (response.statusCode == 200) {
       Map<String, dynamic> responseBody = json.decode(response.body);
       if (responseBody['success'] == true) {
-        print('Credentials are valid');
-        Navigator.pushReplacement(
-          // ignore: use_build_context_synchronously
-          context,
+        final userId = responseBody['user_id'];
+        print('Credentials are valid, user_id: $userId');
+        // ignore: use_build_context_synchronously
+        Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => const HomeLogin()),
         );
+        userProvider.setUserId(userId);
       } else {
-        return print('Invalid credentials. Response ${response.body}');
+        print('Invalid credentials. Response: ${response.body}');
       }
     } else {
-      return print('Server error. Status code: ${response.statusCode}');
+      print('Server error. Status code: ${response.statusCode}');
     }
   } catch (error) {
-    return print('Error checking user: $error');
+    print('Error checking user: $error');
   }
 }

@@ -34,14 +34,17 @@ class HomeNoLogin extends StatelessWidget {
             child: const Row(
               children: [
                 IconButton(
-                    icon: Icon(Icons.manage_accounts_rounded),
+                    icon: Icon(
+                      Icons.manage_accounts_rounded,
+                      color: AppColors.blue,
+                    ),
                     tooltip: "login",
                     focusColor: AppColors.grey,
                     onPressed: null),
                 SizedBox(width: 8),
                 Text(
                   "no login",
-                  style: TextStyle(color: AppColors.grey),
+                  style: TextStyle(color: AppColors.grey, fontFamily: 'Jojo'),
                 ),
               ],
             ),
