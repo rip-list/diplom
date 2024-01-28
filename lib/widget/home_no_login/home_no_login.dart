@@ -3,7 +3,7 @@
 import 'package:diplom/custom/custom_box.dart';
 import 'package:diplom/widget/login/login_screen.dart';
 import 'package:flutter/material.dart';
-import "package:diplom/constant/app_color.dart";
+import 'package:diplom/constant/import_const.dart';
 import 'package:flutter/rendering.dart';
 
 class HomeNoLogin extends StatelessWidget {
@@ -67,6 +67,7 @@ class HomeNoLogin extends StatelessWidget {
                   height: 0.9,
                   width: 0.4,
                   textButton: 'Сделай меня',
+                  body: NullWidget(),
                 ),
               ),
               SizedBox(width: 20.0),
@@ -78,6 +79,7 @@ class HomeNoLogin extends StatelessWidget {
                         height: 0.4,
                         width: 0.55,
                         textButton: 'Назначенные задания',
+                        body: NullWidget(),
                       ),
                     ),
                     SizedBox(height: 20.0),
@@ -86,6 +88,7 @@ class HomeNoLogin extends StatelessWidget {
                         height: 0.4,
                         width: 0.55,
                         textButton: 'Поданные документы',
+                        body: NullWidget(),
                       ),
                     ),
                   ],

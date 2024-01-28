@@ -1,22 +1,21 @@
 // ignore_for_file: avoid_print,
+// ignore_for_file: use_build_context_synchronously
 
 import 'dart:async';
 import 'dart:convert';
 import 'package:diplom/widget/autorization/home_login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
+import '../../custom/import_lib.dart';
+import '../../constant/import_const.dart';
 
-import '../../constant/user_provider.dart';
-
-// отправка данных
-// final get userid;
 final url = Uri.parse('http://localhost:3000/diplom/data_user');
 final headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 };
 
+// registration
 Future<void> insertAuto(String username, String password) async {
   final bodyInsert = jsonEncode({'username': username, 'password': password});
 
@@ -33,6 +32,7 @@ Future<void> insertAuto(String username, String password) async {
   }
 }
 
+// pars data
 Future<Map<String, dynamic>?> fetchData() async {
   try {
     final response = await http.get(url);
@@ -49,6 +49,7 @@ Future<Map<String, dynamic>?> fetchData() async {
   }
 }
 
+// autorization
 Future<void> checkUser(
     BuildContext context, String username, String password) async {
   try {
@@ -62,23 +63,45 @@ Future<void> checkUser(
       }),
     );
 
-    if (response.statusCode == 200) {
-      Map<String, dynamic> responseBody = json.decode(response.body);
-      if (responseBody['success'] == true) {
-        final userId = responseBody['user_id'];
-        print('Credentials are valid, user_id: $userId');
-        // ignore: use_build_context_synchronously
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomeLogin()),
-        );
-        userProvider.setUserId(userId);
-      } else {
-        print('Invalid credentials. Response: ${response.body}');
-      }
+    Map<String, dynamic> responseBody = json.decode(response.body);
+    if (responseBody['success'] == true) {
+      final userId = responseBody['user_id'];
+      final Map<String, dynamic> jsonData = responseBody;
+      final TaskData taskData = TaskData.fromJson(jsonData['tasks'][0]);
+
+      print('Credentials are valid, user_id: $userId');
+
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const HomeLogin()),
+      );
+      userProvider.setUserId(userId);
+      userProvider.setTask(taskData.title, taskData.description);
     } else {
       print('Server error. Status code: ${response.statusCode}');
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return const CustomDialog();
+        },
+      );
     }
   } catch (error) {
     print('Error checking user: $error');
+  }
+}
+
+Future<void> updateData(String userid) async {}
+
+class TaskData {
+  String? title;
+  String? description;
+
+  TaskData({required this.title, required this.description});
+
+  factory TaskData.fromJson(Map<String, dynamic> json) {
+    return TaskData(
+      title: json['title'],
+      description: json['description'],
+    );
   }
 }

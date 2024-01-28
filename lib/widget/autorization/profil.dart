@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import "package:diplom/constant/import_const.dart";
 
 class Profil extends StatefulWidget {
   const Profil({super.key});
@@ -10,6 +11,11 @@ class Profil extends StatefulWidget {
 class _ProfilState extends State<Profil> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(userProvider.userId!),
+      ),
+    );
   }
 }

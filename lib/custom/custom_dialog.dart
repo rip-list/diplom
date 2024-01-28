@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import '../constant/app_color.dart';
 
 class CustomDialog extends StatelessWidget {
-  const CustomDialog({super.key});
+  final String titleText;
+  final String subTitle;
+  const CustomDialog({Key? key, this.titleText = '', this.subTitle = ''})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,19 +29,21 @@ class CustomDialog extends StatelessWidget {
               colors: [AppColors.red, AppColors.blue]),
           borderRadius: BorderRadius.all(Radius.circular(26)),
         ),
-        child: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Center(
-              child: Column(
-                children: [
-                  Text(
-                    'Внимание ',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(" Введены пустые значения")
-                ],
-              ),
-            )),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Column(
+              children: [
+                Text(
+                  // title
+                  titleText,
+                  style: const TextStyle(color: Colors.white),
+                ),
+                Text(subTitle)
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
