@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_unnecessary_containers, unnecessary_import, prefer_const_literals_to_create_immutables
 import 'package:diplom/custom/import_lib.dart';
-import 'package:diplom/custom/custom_box.dart';
 import 'package:diplom/widget/autorization/profil.dart';
 import 'package:flutter/material.dart';
 import "package:diplom/constant/import_const.dart";
@@ -63,7 +62,7 @@ class HomeLogin extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: CusBox(
+                child: CustomBoxLogin(
                   height: 0.9,
                   width: 0.4,
                   textButton: 'Сделай меня',
@@ -75,7 +74,7 @@ class HomeLogin extends StatelessWidget {
                 child: Column(
                   children: [
                     Expanded(
-                      child: CusBox(
+                      child: CustomBoxLogin(
                         height: 0.4,
                         width: 0.55,
                         textButton: 'Назначенные задания',
@@ -84,7 +83,7 @@ class HomeLogin extends StatelessWidget {
                     ),
                     SizedBox(height: 20.0),
                     Expanded(
-                      child: CusBox(
+                      child: CustomBoxLogin(
                         height: 0.4,
                         width: 0.55,
                         textButton: 'Поданные документы',

@@ -10,8 +10,7 @@ class CusBox extends StatefulWidget {
   final Color color;
   final VoidCallback? onPressed;
   final Widget body;
-  
-  
+
   const CusBox({
     Key? key,
     required this.height,

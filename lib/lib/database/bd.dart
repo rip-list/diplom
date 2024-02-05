@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print,
 // ignore_for_file: use_build_context_synchronously
-
+import 'package:diplom/lib/check/lodindb.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:diplom/widget/autorization/home_login.dart';
@@ -67,15 +67,25 @@ Future<void> checkUser(
     if (responseBody['success'] == true) {
       final userId = responseBody['user_id'];
       final Map<String, dynamic> jsonData = responseBody;
-      final TaskData taskData = TaskData.fromJson(jsonData['tasks'][0]);
+      final List<dynamic> tasks = jsonData['tasks'];
+      final Map<String, dynamic> task = tasks[0];
+      final TaskData taskData = TaskData.fromJson(task);
+
+      saveAuthToken(userId);
 
       print('Credentials are valid, user_id: $userId');
+      print('Credentials are valid, tasksTitle: ${taskData.title}');
+
+      if (taskData.title != null) {
+        userProvider.setTask(taskData.title, taskData.description);
+      } else {
+        userProvider.setTask("Нет заданий", "");
+      }
 
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const HomeLogin()),
       );
       userProvider.setUserId(userId);
-      userProvider.setTask(taskData.title, taskData.description);
     } else {
       print('Server error. Status code: ${response.statusCode}');
       showDialog(

@@ -1,3 +1,6 @@
+// ignore_for_file: unused_import
+
+import 'package:diplom/lib/check/lodindb.dart';
 import 'package:flutter/material.dart';
 import "package:diplom/constant/import_const.dart";
 
@@ -11,10 +14,15 @@ class Profil extends StatefulWidget {
 class _ProfilState extends State<Profil> {
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
-        title: Text(userProvider.userId!),
+        title: const Text(""),
+      ),
+      body: const Column(
+        children: [
+          IconButton(
+              onPressed: delAuthToken, icon: Icon(Icons.delete_sweep_outlined))
+        ],
       ),
     );
   }

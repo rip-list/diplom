@@ -11,11 +11,11 @@ class BlockTasks extends StatefulWidget {
 class _BlockTasksState extends State<BlockTasks> {
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    final userProvider = Provider.of<UserProvider>(context);
 
     return Column(
       children: [
-        Text(userProvider.taskTitle!),
+        Text(userProvider.taskTitle ?? "000"),
         Text(userProvider.taskDescription!),
       ],
     );
