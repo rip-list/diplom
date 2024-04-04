@@ -16,7 +16,12 @@ class _ProfilState extends State<Profil> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(""),
+        backgroundColor: AppColors.primary,
+        centerTitle: true,
+        title: const Text(
+          " PROFILE",
+          style: TextStyle(fontFamily: 'Jojo'),
+        ),
       ),
       body: const Column(
         children: [
@@ -24,6 +29,7 @@ class _ProfilState extends State<Profil> {
               onPressed: delAuthToken, icon: Icon(Icons.delete_sweep_outlined))
         ],
       ),
+      backgroundColor: AppColors.secondary,
     );
   }
 }

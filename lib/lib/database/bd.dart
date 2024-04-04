@@ -66,15 +66,22 @@ Future<void> checkUser(
     Map<String, dynamic> responseBody = json.decode(response.body);
     if (responseBody['success'] == true) {
       final userId = responseBody['user_id'];
+      final firstName = responseBody["firstName"];
+      final lastName = responseBody["lastName"];
+      final patronum = responseBody["patronum"];
       final Map<String, dynamic> jsonData = responseBody;
       final List<dynamic> tasks = jsonData['tasks'];
       final Map<String, dynamic> task = tasks[0];
       final TaskData taskData = TaskData.fromJson(task);
-
+      print(responseBody);
       saveAuthToken(userId);
+      saveFirstName(firstName);
+      saveLastName(lastName);
+      savePatronum(patronum);
 
       print('Credentials are valid, user_id: $userId');
-      print('Credentials are valid, tasksTitle: ${taskData.title}');
+      print(
+          'Credentials are valid, tasksTitle: ${taskData.title} ${taskData.description}}');
 
       if (taskData.title != null) {
         userProvider.setTask(taskData.title, taskData.description);
