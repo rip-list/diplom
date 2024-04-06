@@ -3,7 +3,7 @@ import 'package:diplom/widget/autorization/home_login.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'home_no_login.dart';
-import 'package:diplom/lib/check/lodindb.dart';
+import 'package:diplom/lib/database/localbd/lodindb.dart';
 import 'package:diplom/lib/sized_screen/sizer_util.dart';
 
 class MyApp extends StatelessWidget {

@@ -2,7 +2,7 @@
 
 import 'package:diplom/constant/app_color.dart';
 import 'package:diplom/custom/custom_dialog.dart';
-import 'package:diplom/lib/database/bd.dart';
+import 'package:diplom/lib/database/localbd/bd.dart';
 
 import 'package:flutter/material.dart';
 

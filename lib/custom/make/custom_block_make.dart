@@ -13,9 +13,16 @@ class _BlockMakeState extends State<BlockMake> {
   Widget build(BuildContext context) {
     return Container(
       color: AppColors.grey,
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
       child: const Row(children: []),
     );
+  }
+}
+
+class WorkME extends StatelessWidget {
+  const WorkME({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }

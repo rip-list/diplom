@@ -1,13 +1,13 @@
 // ignore_for_file: avoid_print,
 // ignore_for_file: use_build_context_synchronously
-import 'package:diplom/lib/check/lodindb.dart';
+import 'package:diplom/lib/database/localbd/lodindb.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:diplom/widget/autorization/home_login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../../custom/import_lib.dart';
-import '../../constant/import_const.dart';
+import '../../../custom/import_lib.dart';
+import '../../../constant/import_const.dart';
 
 final url = Uri.parse('http://localhost:3000/diplom/data_user');
 final headers = {

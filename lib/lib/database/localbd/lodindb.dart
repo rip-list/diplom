@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Пример сохранения данных в SharedPreferences
@@ -30,14 +32,30 @@ Future<void> saveFirstName(String firstName) async {
   prefs.setString('First Name', firstName);
 }
 
+// получение данных именни
+Future<String?> getFirstName() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.getString('First Name');
+}
+
 // сохранения данных фамилии
 Future<void> saveLastName(String lastName) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setString('Last Name', lastName);
 }
 
+Future<String?> getLastName() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.getString('Last Name');
+}
+
 // сохранения данных отчества
 Future<void> savePatronum(String patronum) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.setString('Patroymi', patronum);
+  prefs.setString('Patronum', patronum);
+}
+
+Future<String?> getPatronum() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.getString('Patronum');
 }
