@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:diplom/constant/import_const.dart'; // Проверьте, что путь к этому файлу указан правильно
 import 'package:shared_preferences/shared_preferences.dart';
-
+import "package:diplom/constant/restart_app.dart";
 import 'package:diplom/lib/database/localbd/lodindb.dart';
 
 class Profil extends StatefulWidget {
@@ -23,17 +23,21 @@ class _ProfilState extends State<Profil> {
     getData();
   }
 
+// получение имени фамилии отчества
   Future<void> getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? firstName = prefs.getString("First Name");
     String? lastName = prefs.getString("Last Name");
+    // TODO отчество где чорт ?
     String? patronum = prefs.getString("Patronum");
 
-    setState(() {
-      firstname = firstName ?? "error found";
-      lastname = lastName ?? "error found";
-      patronum = patronum ?? "error found";
-    });
+    setState(
+      () {
+        firstname = firstName ?? "error found";
+        lastname = lastName ?? "error found";
+        patronum = patronum ?? "error found";
+      },
+    );
   }
 
   @override
@@ -63,10 +67,12 @@ class _ProfilState extends State<Profil> {
               patronum,
               style: const TextStyle(fontSize: 24),
             ),
-            const IconButton(
-              onPressed:
-                  delAuthToken, // Убедитесь, что метод delAuthToken определен
-              icon: Icon(Icons.delete_sweep_outlined),
+            IconButton(
+              onPressed: () {
+                delAuthToken();
+                restartApp(context: context);
+              }, // Убедитесь, что метод delAuthToken определен
+              icon: const Icon(Icons.delete_sweep_outlined),
             ),
           ],
         ),

@@ -78,6 +78,7 @@ Future<void> checkUser(
       saveFirstName(firstName);
       saveLastName(lastName);
       savePatronum(patronum);
+      print(patronum);
 
       print('Credentials are valid, user_id: $userId');
       print(
