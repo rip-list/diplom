@@ -22,6 +22,7 @@ dependencies:
   http: ^1.2.0
   shared_preferences: ^2.2.2
   rebirth: ^1.0.2
+  file_picker: ^8.0.3
 
 
 dev_dependencies:

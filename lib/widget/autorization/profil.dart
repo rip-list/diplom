@@ -1,3 +1,6 @@
+import 'package:diplom/constant/restart_app.dart';
+import 'package:diplom/lib/database/localbd/lodindb.dart';
+import 'package:diplom/widget/autorization/change_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:diplom/constant/import_const.dart'; // Проверьте, что путь к этому файлу указан правильно
 import 'package:shared_preferences/shared_preferences.dart';
@@ -54,7 +57,7 @@ class _ProfilState extends State<Profil> {
       body: Scaffold(
         body: Column(
           children: [
-            const Expanded(flex: 2, child: _TopPortion()),
+            const Expanded(flex: 3, child: _TopPortion()),
             Expanded(
               flex: 3,
               child: Padding(
@@ -73,18 +76,41 @@ class _ProfilState extends State<Profil> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         FloatingActionButton.extended(
-                          onPressed: () {},
+                          onPressed: () {
+                            delAuthToken();
+                            restartApp(context: context);
+                          },
                           elevation: 0,
+                          heroTag: "delite",
                           label: const Text("Unlogin"),
+                          backgroundColor: AppColors.red,
                           icon: const Icon(Icons.delete_sweep),
                         ),
                         const SizedBox(width: 16.0),
                         FloatingActionButton.extended(
                           onPressed: () {},
+                          heroTag: "change_name",
                           elevation: 0,
-                          backgroundColor: Colors.red,
+                          backgroundColor: AppColors.darkblue,
                           label: const Text("Change Name"),
                           icon: const Icon(Icons.message_rounded),
+                        ),
+                        const SizedBox(width: 16.0),
+                        FloatingActionButton.extended(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: ((context) =>
+                                    const ImagePickerScreen()),
+                              ),
+                            );
+                          },
+                          elevation: 0,
+                          heroTag: "change_avatar",
+                          backgroundColor: AppColors.green,
+                          label: const Text("Change Avatar"),
+                          icon: const Icon(Icons.person_remove_sharp),
                         ),
                       ],
                     ),
@@ -96,6 +122,7 @@ class _ProfilState extends State<Profil> {
             ),
           ],
         ),
+        backgroundColor: AppColors.primary,
       ),
     );
   }
@@ -137,19 +164,6 @@ class _TopPortion extends StatelessWidget {
                         fit: BoxFit.cover,
                         image: NetworkImage(
                             'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')),
-                  ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: CircleAvatar(
-                    radius: 20,
-                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                    child: Container(
-                      margin: const EdgeInsets.all(8.0),
-                      decoration: const BoxDecoration(
-                          color: Colors.green, shape: BoxShape.circle),
-                    ),
                   ),
                 ),
               ],
