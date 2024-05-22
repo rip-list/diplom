@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_final_fields
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -14,6 +16,8 @@ class ImagePickerScreen extends StatefulWidget {
 
 class ImagePickerScreenState extends State<ImagePickerScreen> {
   String? _filePath;
+  bool _isImagePicked = false;
+  bool _isSavePicked = true;
 
   Future<void> _pickImage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -23,6 +27,8 @@ class ImagePickerScreenState extends State<ImagePickerScreen> {
     if (result != null) {
       setState(() {
         _filePath = result.files.single.path;
+        _isImagePicked = true;
+        _isSavePicked = false;
       });
     }
   }
@@ -47,17 +53,21 @@ class ImagePickerScreenState extends State<ImagePickerScreen> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          FloatingActionButton.extended(
-            onPressed: _pickImage,
-            label: const Text("Pick Image"),
-            icon: const Icon(Icons.add_a_photo),
-          ),
+          if (!_isImagePicked)
+            FloatingActionButton.extended(
+              heroTag: "pickimage",
+              onPressed: _pickImage,
+              label: const Text("Pick Image"),
+              icon: const Icon(Icons.add_a_photo),
+            ),
           const SizedBox(height: 10),
-          FloatingActionButton.extended(
-            onPressed: () {}, //_saveImageToDB,
-            label: const Text("Save Image"),
-            icon: const Icon(Icons.save),
-          ),
+          if (!_isSavePicked)
+            FloatingActionButton.extended(
+              onPressed: () {}, //_saveImageToDB,
+              heroTag: "saveimage",
+              label: const Text("Save Image"),
+              icon: const Icon(Icons.save),
+            ),
         ],
       ),
     );

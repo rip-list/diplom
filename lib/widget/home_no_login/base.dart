@@ -1,7 +1,6 @@
-import 'package:diplom/constant/user_provider.dart';
+import 'package:diplom/constant/import_const.dart';
 import 'package:diplom/widget/autorization/home_login.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'home_no_login.dart';
 import 'package:diplom/lib/database/localbd/lodindb.dart';
 import 'package:diplom/lib/sized_screen/sizer_util.dart';
@@ -24,7 +23,18 @@ class MyApp extends StatelessWidget {
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 title: 'Sizer',
-                theme: ThemeData.dark(),
+                theme: ThemeData(
+                  primaryColor: AppColors.primary,
+                  hintColor: AppColors.blue,
+                  appBarTheme: const AppBarTheme(
+                    centerTitle: true,
+                    color: AppColors.blue,
+                    iconTheme: IconThemeData(
+                      color: AppColors.white,
+                    ),
+                    titleTextStyle: TextStyle(fontFamily: "Jojo", fontSize: 28),
+                  ),
+                ),
                 home: FutureBuilder(
                     future: checkUserAuthentication(),
                     builder: (context, snapshot) {

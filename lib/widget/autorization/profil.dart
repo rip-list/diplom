@@ -66,10 +66,8 @@ class _ProfilState extends State<Profil> {
                   children: [
                     Text(
                       name,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleLarge
-                          ?.copyWith(fontWeight: FontWeight.bold),
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.bold, color: AppColors.white),
                     ),
                     const SizedBox(height: 16),
                     Row(
@@ -82,9 +80,15 @@ class _ProfilState extends State<Profil> {
                           },
                           elevation: 0,
                           heroTag: "delite",
-                          label: const Text("Unlogin"),
+                          label: const Text(
+                            "Unlogin",
+                            style: TextStyle(color: AppColors.dark),
+                          ),
                           backgroundColor: AppColors.red,
-                          icon: const Icon(Icons.delete_sweep),
+                          icon: const Icon(
+                            Icons.delete_sweep,
+                            color: AppColors.dark,
+                          ),
                         ),
                         const SizedBox(width: 16.0),
                         FloatingActionButton.extended(
@@ -92,8 +96,14 @@ class _ProfilState extends State<Profil> {
                           heroTag: "change_name",
                           elevation: 0,
                           backgroundColor: AppColors.darkblue,
-                          label: const Text("Change Name"),
-                          icon: const Icon(Icons.message_rounded),
+                          label: const Text(
+                            "Change Name",
+                            style: TextStyle(color: AppColors.white),
+                          ),
+                          icon: const Icon(
+                            Icons.message_rounded,
+                            color: AppColors.white,
+                          ),
                         ),
                         const SizedBox(width: 16.0),
                         FloatingActionButton.extended(
@@ -109,8 +119,14 @@ class _ProfilState extends State<Profil> {
                           elevation: 0,
                           heroTag: "change_avatar",
                           backgroundColor: AppColors.green,
-                          label: const Text("Change Avatar"),
-                          icon: const Icon(Icons.person_remove_sharp),
+                          label: const Text(
+                            "Change Avatar",
+                            style: TextStyle(color: AppColors.white),
+                          ),
+                          icon: const Icon(
+                            Icons.person_remove_sharp,
+                            color: AppColors.white,
+                          ),
                         ),
                       ],
                     ),
