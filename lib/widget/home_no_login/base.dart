@@ -24,15 +24,18 @@ class MyApp extends StatelessWidget {
                 debugShowCheckedModeBanner: false,
                 title: 'Sizer',
                 theme: ThemeData(
-                  primaryColor: AppColors.primary,
+                  primaryColor: AppColors.secondary,
                   hintColor: AppColors.blue,
                   appBarTheme: const AppBarTheme(
                     centerTitle: true,
-                    color: AppColors.blue,
+                    color: AppColors.primary,
                     iconTheme: IconThemeData(
                       color: AppColors.white,
                     ),
-                    titleTextStyle: TextStyle(fontFamily: "Jojo", fontSize: 28),
+                    titleTextStyle: TextStyle(
+                        fontFamily: "Jojo",
+                        fontSize: 28,
+                        color: AppColors.blue),
                   ),
                 ),
                 home: FutureBuilder(

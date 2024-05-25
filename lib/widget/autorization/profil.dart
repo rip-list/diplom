@@ -118,7 +118,7 @@ class _ProfilState extends State<Profil> {
                           },
                           elevation: 0,
                           heroTag: "change_avatar",
-                          backgroundColor: AppColors.green,
+                          backgroundColor: AppColors.orange,
                           label: const Text(
                             "Change Avatar",
                             style: TextStyle(color: AppColors.white),

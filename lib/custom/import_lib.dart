@@ -6,3 +6,4 @@ export "custom_dialog.dart";
 export "custom_fild.dart";
 export "custom_box.dart";
 export "custom_box_login.dart";
+export "generate_random.dart";

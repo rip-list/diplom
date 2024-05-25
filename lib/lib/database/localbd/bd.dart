@@ -62,7 +62,7 @@ Future<void> checkUser(
         'password': password,
       }),
     );
-
+// save data in  local
     Map<String, dynamic> responseBody = json.decode(response.body);
     if (responseBody['success'] == true) {
       final userId = responseBody['user_id'];
@@ -78,7 +78,6 @@ Future<void> checkUser(
       saveFirstName(firstName);
       saveLastName(lastName);
       savePatronum(patronum);
-      print(patronum);
 
       print('Credentials are valid, user_id: $userId');
       print(
@@ -93,6 +92,7 @@ Future<void> checkUser(
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const HomeLogin()),
       );
+      // save userID in local bd
       userProvider.setUserId(userId);
     } else {
       print('Server error. Status code: ${response.statusCode}');
@@ -110,6 +110,7 @@ Future<void> checkUser(
 
 Future<void> updateData(String userid) async {}
 
+// обработка задач
 class TaskData {
   String? title;
   String? description;

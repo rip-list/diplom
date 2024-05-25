@@ -1,9 +1,10 @@
 // ignore_for_file: avoid_unnecessary_containers, unnecessary_import, prefer_const_literals_to_create_immutables
 import 'package:diplom/custom/import_lib.dart';
-import 'package:diplom/widget/autorization/profil.dart';
 import 'package:flutter/material.dart';
 import "package:diplom/constant/import_const.dart";
 import 'package:flutter/rendering.dart';
+
+import 'profil.dart';
 
 class HomeLogin extends StatelessWidget {
   const HomeLogin({super.key});

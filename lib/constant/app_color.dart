@@ -11,4 +11,5 @@ class AppColors {
   static const Color transparent = Colors.transparent;
   static const Color darkblue = Color(0xff006df1);
   static const Color dark = Color(0xff000000);
+  static const Color orange = Color(0xffED8260);
 }
