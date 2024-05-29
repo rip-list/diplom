@@ -1,5 +1,6 @@
-// ignore_for_file: avoid_print,
+// ignore_for_file: avoid_print,, unused_import
 // ignore_for_file: use_build_context_synchronously
+
 import 'package:diplom/lib/database/localbd/lodindb.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -69,6 +70,7 @@ Future<void> checkUser(
       final firstName = responseBody["firstName"];
       final lastName = responseBody["lastName"];
       final patronum = responseBody["patronum"];
+
       final Map<String, dynamic> jsonData = responseBody;
       final List<dynamic> tasks = jsonData['tasks'];
       final Map<String, dynamic> task = tasks[0];
@@ -122,5 +124,32 @@ class TaskData {
       title: json['title'],
       description: json['description'],
     );
+  }
+}
+
+// seve image or server
+Future<String> saveAvatar() async {
+  try {
+    final userId =
+        await getAuthToken(); // Предполагается, что getAuthToken возвращает userId
+    final response =
+        await http.get(Uri.parse('http://localhost:3000/get-avatar/$userId'));
+
+    if (response.statusCode == 200) {
+      print('Successful');
+      String imgdata = 'http://localhost:3000/get-avatar/$userId';
+      return imgdata;
+    } else {
+      String err =
+          "https://sneg.top/uploads/posts/2023-06/1687993484_sneg-top-p-neitralnaya-avatarka-na-vatsap-pinterest-5.jpg";
+      print("Failed to load image: ${response.statusCode}");
+      return err;
+    }
+  } catch (error) {
+    print("Server returned error: $error");
+
+    String err =
+        "https://sneg.top/uploads/posts/2023-06/1687993484_sneg-top-p-neitralnaya-avatarka-na-vatsap-pinterest-5.jpg";
+    return err;
   }
 }

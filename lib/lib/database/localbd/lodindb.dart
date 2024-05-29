@@ -43,3 +43,5 @@ Future<void> savePatronum(String patronum) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setString('Patronum', patronum);
 }
+
+// save avatar link

@@ -2,6 +2,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:diplom/constant/import_const.dart';
+import 'package:diplom/constant/restart_app.dart';
 import '../../custom/import_lib.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
@@ -41,7 +42,7 @@ class ImagePickerScreenState extends State<ImagePickerScreen>
 
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      String? userId = prefs.getString("authToken"); //  реальный userId
+      String? userId = prefs.getString("authToken");
 
       File imageFile = File(_filePath!);
       String fileName = imageFile.path.split('/').last;
@@ -54,15 +55,22 @@ class ImagePickerScreenState extends State<ImagePickerScreen>
 
       Dio dio = Dio();
       Response response = await dio.post(
-        "http://localhost:3000/upload", // Убедитесь, что адрес правильный
+        "http://localhost:3000/upload",
         data: formData,
       );
 
       if (response.statusCode == 200) {
         print("Image uploaded successfully");
-        setState(() {
-          _isSavePicked = true;
-        });
+        String newAvatarUrl =
+            response.data["avatarUrl"]; // сервер возвращает ключ "avatarUrl"
+
+        // Сохранение URL аватара в SharedPreferences
+        await prefs.setString('avatarUrl', newAvatarUrl);
+
+        // Закрываем экран изменения аватара и передаем новый URL
+        if (mounted) {
+          Navigator.pop(context, newAvatarUrl);
+        }
       } else {
         print("Failed to upload image");
       }
