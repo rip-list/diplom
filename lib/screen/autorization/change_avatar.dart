@@ -103,6 +103,7 @@ class ImagePickerScreenState extends State<ImagePickerScreen>
     return Scaffold(
       backgroundColor: AppColors.secondary,
       appBar: AppBar(
+        backgroundColor: AppColors.primary,
         title: const Text('Image Change Screen'),
       ),
       body: Center(

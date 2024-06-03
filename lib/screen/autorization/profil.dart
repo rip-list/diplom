@@ -2,7 +2,8 @@
 
 import 'package:diplom/constant/restart_app.dart';
 import 'package:diplom/lib/database/localbd/lodindb.dart';
-import 'package:diplom/widget/autorization/change_avatar.dart';
+import 'package:diplom/screen/autorization/change_avatar.dart';
+import 'package:diplom/screen/autorization/change_name.dart';
 import 'package:flutter/material.dart';
 import 'package:diplom/constant/import_const.dart'; // Проверьте, что путь к этому файлу указан правильно
 import 'package:shared_preferences/shared_preferences.dart';
@@ -43,14 +44,6 @@ class _ProfilState extends State<Profil> {
     };
   }
 
-  Future<void> saveAvatarUrl(String newAvatarUrl) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('avatarUrl', newAvatarUrl);
-    setState(() {
-      avatarUrl = newAvatarUrl;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +52,7 @@ class _ProfilState extends State<Profil> {
         centerTitle: true,
         title: const Text(
           "PROFILE",
-          style: TextStyle(fontFamily: 'Jojo', color: AppColors.blue),
+          style: TextStyle(fontFamily: 'Jojo', color: AppColors.white),
         ),
       ),
       body: FutureBuilder<Map<String, String?>>(
@@ -108,7 +101,7 @@ class _ProfilState extends State<Profil> {
                                 elevation: 0,
                                 heroTag: "delite",
                                 label: const Text(
-                                  "Unlogin",
+                                  "Unlogin User",
                                   style: TextStyle(color: AppColors.dark),
                                 ),
                                 backgroundColor: AppColors.red,
@@ -119,7 +112,14 @@ class _ProfilState extends State<Profil> {
                               ),
                               const SizedBox(width: 16.0),
                               FloatingActionButton.extended(
-                                onPressed: () {},
+                                onPressed: () async {
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const ChangeName(),
+                                    ),
+                                  );
+                                },
                                 heroTag: "change_name",
                                 elevation: 0,
                                 backgroundColor: AppColors.darkblue,
@@ -162,20 +162,6 @@ class _ProfilState extends State<Profil> {
                             ],
                           ),
                           const SizedBox(height: 16),
-                          FloatingActionButton.extended(
-                            heroTag: "updatedata",
-                            onPressed: () {
-                              setState(() {}); // Обновляем состояние
-                            },
-                            elevation: 0,
-                            backgroundColor: AppColors.dark,
-                            label: const Text(
-                              "Update Data",
-                              style: TextStyle(color: AppColors.white),
-                            ),
-                            icon: const Icon(Icons.refresh,
-                                color: AppColors.white),
-                          ),
                         ],
                       ),
                     ),

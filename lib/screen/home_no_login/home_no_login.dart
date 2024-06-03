@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers, unnecessary_import, prefer_const_literals_to_create_immutables
 
 import 'package:diplom/custom/custom_box.dart';
-import 'package:diplom/widget/login/login_screen.dart';
+import 'package:diplom/screen/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:diplom/constant/import_const.dart';
 import 'package:flutter/rendering.dart';

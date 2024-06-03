@@ -1,5 +1,5 @@
 import 'package:diplom/constant/import_const.dart';
-import 'package:diplom/widget/autorization/home_login.dart';
+import 'package:diplom/screen/autorization/home_login.dart';
 import 'package:flutter/material.dart';
 import 'home_no_login.dart';
 import 'package:diplom/lib/database/localbd/lodindb.dart';

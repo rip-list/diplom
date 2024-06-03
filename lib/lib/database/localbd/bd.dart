@@ -4,7 +4,7 @@
 import 'package:diplom/lib/database/localbd/lodindb.dart';
 import 'dart:async';
 import 'dart:convert';
-import 'package:diplom/widget/autorization/home_login.dart';
+import 'package:diplom/screen/autorization/home_login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../../../custom/import_lib.dart';
@@ -151,5 +151,37 @@ Future<String> saveAvatar() async {
     String err =
         "https://sneg.top/uploads/posts/2023-06/1687993484_sneg-top-p-neitralnaya-avatarka-na-vatsap-pinterest-5.jpg";
     return err;
+  }
+}
+
+Future<void> updateName(
+    String newFirstName, String newPatronum, String newLastName) async {
+  String? userId = await getAuthToken();
+
+  if (userId == null) {
+    print('Failed to retrieve user ID');
+    return;
+  }
+  final response = await http.post(
+    Uri.parse('http://localhost:3000/updateUser'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'userId': userId,
+      'firstName': newFirstName,
+      'lastName': newLastName,
+      'patronum': newPatronum,
+    }),
+  );
+  print(userId);
+  print(newFirstName);
+  print(newLastName);
+  print(newPatronum);
+  if (response.statusCode == 200) {
+    print('User updated successfully');
+  } else {
+    print(response.statusCode);
+    print('Failed to update user: ${response.reasonPhrase}');
   }
 }

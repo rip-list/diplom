@@ -1,7 +1,7 @@
 // ignore_for_file: unnecessary_import
 
 import 'package:diplom/constant/app_color.dart';
-import 'package:diplom/widget/allert_comment.dart';
+import 'package:diplom/screen/allert_comment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
