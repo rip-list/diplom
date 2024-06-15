@@ -1,4 +1,3 @@
-import 'package:diplom/constant/app_color.dart';
 import 'package:flutter/material.dart';
 
 class BlockMake extends StatefulWidget {
@@ -11,18 +10,8 @@ class BlockMake extends StatefulWidget {
 class _BlockMakeState extends State<BlockMake> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.grey,
-      child: const Row(children: []),
+    return const Center(
+      child: Text(" TEST!|!"),
     );
-  }
-}
-
-class WorkME extends StatelessWidget {
-  const WorkME({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_unnecessary_containers, unnecessary_import, prefer_const_literals_to_create_immutables
 import 'package:diplom/custom/import_lib.dart';
+import 'package:diplom/constant/import_bloc.dart';
 import 'package:flutter/material.dart';
 import "package:diplom/constant/import_const.dart";
 import 'package:flutter/rendering.dart';
@@ -68,6 +69,7 @@ class HomeLogin extends StatelessWidget {
                   width: 0.4,
                   textButton: 'Сделай меня',
                   body: BlockMake(),
+                  child: MakeScreen(),
                 ),
               ),
               SizedBox(width: 20.0),
@@ -80,6 +82,7 @@ class HomeLogin extends StatelessWidget {
                         width: 0.55,
                         textButton: 'Назначенные задания',
                         body: BlockTasks(),
+                        child: TaskScreen(),
                       ),
                     ),
                     SizedBox(height: 20.0),
@@ -89,6 +92,7 @@ class HomeLogin extends StatelessWidget {
                         width: 0.55,
                         textButton: 'Поданные документы',
                         body: BlockDocs(),
+                        child: DocsScreen(),
                       ),
                     ),
                   ],
@@ -102,10 +106,10 @@ class HomeLogin extends StatelessWidget {
         onPressed: () {
           // Add your onPressed code here!
         },
-        backgroundColor: AppColors.primary,
+        backgroundColor: AppColors.blue,
         child: const Icon(Icons.add),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }

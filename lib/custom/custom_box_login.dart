@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_init_to_null
 
 import 'package:diplom/constant/app_color.dart';
+// import 'package:diplom/custom/import_lib.dart';
 import 'package:flutter/material.dart';
 
 class CustomBoxLogin extends StatefulWidget {
@@ -9,6 +10,7 @@ class CustomBoxLogin extends StatefulWidget {
   final String textButton;
   final Color color;
   final VoidCallback? onPressed;
+  final Widget child;
   final Widget body;
 
   const CustomBoxLogin({
@@ -17,6 +19,7 @@ class CustomBoxLogin extends StatefulWidget {
     required this.width,
     required this.textButton,
     required this.body,
+    required this.child,
     this.color = AppColors.grey,
     this.onPressed = null,
   }) : super(key: key);
@@ -47,7 +50,12 @@ class CustomBoxLoginState extends State<CustomBoxLogin> {
               child: Stack(
                 children: [
                   TextButton(
-                    onPressed: widget.onPressed,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => widget.child),
+                      );
+                    },
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Text(

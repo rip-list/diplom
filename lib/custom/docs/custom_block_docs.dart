@@ -10,6 +10,8 @@ class BlockDocs extends StatefulWidget {
 class _BlockDocsState extends State<BlockDocs> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Center(
+      child: Text(" TEST !|!"),
+    );
   }
 }

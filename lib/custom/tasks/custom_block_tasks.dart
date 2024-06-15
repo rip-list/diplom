@@ -10,8 +10,8 @@ class BlockTasks extends StatefulWidget {
 class _BlockTasksState extends State<BlockTasks> {
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [],
+    return const Center(
+      child: Text(" TEST !|!"),
     );
   }
 }
