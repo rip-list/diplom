@@ -7,7 +7,7 @@ This Flutter diploma project serves as a comprehensive showcase of the capabilit
 - **Cross-Platform Support**: Runs seamlessly on both iOS and Android.
 - **State Management**: Utilizes modern state management techniques such as Provider and Riverpod.
 - **Responsive UI**: Adapts to various screen sizes with Flexbox layouts and MediaQuery.
-- **Firebase Integration**: Connects with Firestore for real-time data management.
+
 
 ## Installation
 To get started, clone the repository and run the following commands:
@@ -26,7 +26,3 @@ Feel free to fork the repository and submit pull requests. Your contributions ar
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
 
-## Acknowledgements
-- Flutter - The framework for building beautiful apps.
-- Firebase - For backend services.
-- Open Source Community - For their valuable contributions and support.
